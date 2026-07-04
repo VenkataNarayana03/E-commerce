@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import api from "../../services/api.js";
 import { useAuth } from "../../context/AuthContext.jsx";
 
-function Admin() {
+function Dashboard() {
   const { user } = useAuth();
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     api
-      .get("/admin/dashboard")
+      .get("/users/me/dashboard")
       .then((response) => setMessage(response.data.message))
-      .catch(() => setMessage("Unable to load admin dashboard details."));
+      .catch(() => setMessage("Unable to load dashboard details."));
   }, []);
 
   return (
     <>
-      <h1 className="h3">Admin</h1>
+      <h1 className="h3">Customer Dashboard</h1>
       <div className="bg-white border rounded p-4">
         <p className="mb-1">
           <strong>Name:</strong> {user?.full_name}
@@ -29,4 +29,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Dashboard;

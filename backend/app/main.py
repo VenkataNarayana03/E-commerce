@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
+from app.routes import admin, auth, users
 
 settings = get_settings()
 
@@ -25,3 +26,7 @@ def root():
 def health_check():
     return {"status": "ok"}
 
+
+app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(admin.router)

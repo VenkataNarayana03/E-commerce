@@ -11,6 +11,7 @@ import Cart from "./pages/Cart/Cart.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Orders from "./pages/Orders/Orders.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 function App() {
@@ -25,6 +26,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/checkout"
             element={
@@ -58,4 +67,3 @@ function App() {
 }
 
 export default App;
-

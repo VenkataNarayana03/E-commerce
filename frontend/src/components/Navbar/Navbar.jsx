@@ -30,6 +30,11 @@ function Navbar() {
               Products
             </NavLink>
             {user && (
+              <NavLink className="nav-link" to="/dashboard">
+                Dashboard
+              </NavLink>
+            )}
+            {user && (
               <NavLink className="nav-link" to="/orders">
                 Orders
               </NavLink>
@@ -66,4 +71,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

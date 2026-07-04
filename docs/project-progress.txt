@@ -11,9 +11,10 @@ Current Status
 Completed phases:
 - Phase 1: Project Setup
 - Phase 2: Database Design
+- Phase 3: Authentication Module
 
 Next phase:
-- Phase 3: Authentication Module
+- Phase 4: Product Management
 
 
 Project Tech Stack
@@ -739,6 +740,353 @@ This warning did not block:
 - Neon database table creation
 
 
+PHASE 3: AUTHENTICATION MODULE
+==============================
+
+Goal
+----
+Implement the authentication flow:
+
+Guest
+↓
+Register
+↓
+Login
+↓
+Receive JWT Token
+↓
+Access Protected Routes
+↓
+Customer Dashboard
+
+Admin
+↓
+Login
+↓
+Access Admin Routes
+
+
+What Was Implemented
+--------------------
+Backend:
+- Customer registration API.
+- Customer/admin login API.
+- JWT access token creation.
+- JWT token decoding and validation.
+- Password hashing.
+- Current user endpoint.
+- Customer protected dashboard endpoint.
+- Admin protected dashboard endpoint.
+- Role-based admin dependency.
+- Utility command to create or update an admin user.
+
+Frontend:
+- Register form now calls the backend API.
+- Login form now calls the backend API.
+- JWT token is stored in localStorage.
+- Logged-in user data is stored in localStorage.
+- App reload validates the stored token using /api/auth/me.
+- Protected frontend routes use real auth state.
+- Admin route checks user role.
+- Customer dashboard page was added.
+- Admin page now checks the protected admin API.
+- Navbar shows Dashboard for logged-in users.
+
+
+Backend Files Added
+-------------------
+backend/app/schemas/__init__.py:
+- Makes schemas a Python package.
+
+backend/app/schemas/auth.py:
+- Defines RegisterRequest.
+- Defines LoginRequest.
+- Defines TokenResponse.
+
+backend/app/schemas/user.py:
+- Defines UserRead response schema.
+- Defines UserDashboard response schema.
+- Defines AdminDashboard response schema.
+
+backend/app/services/__init__.py:
+- Makes services a Python package.
+
+backend/app/services/security.py:
+- Hashes passwords using bcrypt.
+- Verifies passwords using bcrypt.
+- Creates JWT access tokens.
+- Decodes JWT access tokens.
+
+backend/app/dependencies/__init__.py:
+- Makes dependencies a Python package.
+
+backend/app/dependencies/auth.py:
+- Defines OAuth2 bearer token extraction.
+- Defines get_current_user.
+- Defines get_current_admin.
+- Rejects invalid tokens.
+- Rejects inactive or blocked users.
+- Rejects non-admin users from admin-only routes.
+
+backend/app/routes/__init__.py:
+- Makes routes a Python package.
+
+backend/app/routes/auth.py:
+- Defines POST /api/auth/register.
+- Defines POST /api/auth/login.
+- Defines GET /api/auth/me.
+
+backend/app/routes/users.py:
+- Defines GET /api/users/me/dashboard.
+- Requires valid JWT.
+
+backend/app/routes/admin.py:
+- Defines GET /api/admin/dashboard.
+- Requires valid JWT and admin role.
+
+backend/app/utils/create_admin.py:
+- Creates or updates an admin user from the command line.
+- Useful because public admin registration is not safe.
+
+
+Backend Files Updated
+---------------------
+backend/app/main.py:
+- Includes auth router.
+- Includes users router.
+- Includes admin router.
+
+backend/requirements.txt:
+- Added bcrypt explicitly.
+- Kept passlib[bcrypt] from the original stack, but the active security helper now uses bcrypt directly because the installed passlib version had compatibility issues with bcrypt 5.x.
+
+
+Backend API Endpoints Added
+---------------------------
+POST /api/auth/register:
+- Public endpoint.
+- Creates a customer account.
+- Hashes the password before saving it.
+- Rejects duplicate email addresses.
+- Returns JWT token and user profile.
+
+Request body:
+- full_name
+- email
+- password
+
+POST /api/auth/login:
+- Public endpoint.
+- Accepts customer or admin login.
+- Verifies password.
+- Rejects wrong credentials.
+- Rejects inactive or blocked users.
+- Returns JWT token and user profile.
+
+Request body:
+- email
+- password
+
+GET /api/auth/me:
+- Protected endpoint.
+- Requires Authorization: Bearer token.
+- Returns current user profile.
+
+GET /api/users/me/dashboard:
+- Protected customer endpoint.
+- Requires valid JWT token.
+- Returns customer dashboard access message and user data.
+
+GET /api/admin/dashboard:
+- Protected admin endpoint.
+- Requires valid JWT token.
+- Requires user role to be admin.
+- Returns admin dashboard access message and user data.
+
+
+JWT Details
+-----------
+JWT token contains:
+- sub: user id
+- exp: expiry datetime
+
+JWT config comes from .env:
+- JWT_SECRET_KEY
+- JWT_ALGORITHM
+- ACCESS_TOKEN_EXPIRE_MINUTES
+
+Frontend stores the token using:
+- localStorage key: accessToken
+
+Frontend sends token using:
+- Authorization: Bearer <token>
+
+
+Password Hashing Details
+------------------------
+Passwords are never stored directly.
+
+When registering:
+- User password is converted to a bcrypt hash.
+- Hash is saved in users.password_hash.
+
+When logging in:
+- Plain password from request is compared with saved bcrypt hash.
+- Login succeeds only if they match.
+
+Password length:
+- RegisterRequest allows passwords from 8 to 72 characters.
+- 72 characters is the bcrypt safe limit.
+
+
+Admin Access Details
+--------------------
+There is no public admin registration endpoint.
+
+To create or update an admin user, use:
+cd backend
+.\.venv\Scripts\python.exe -m app.utils.create_admin --email admin@example.com --password Password123 --name "Admin User"
+
+After that:
+- Go to frontend login page.
+- Login with that admin email and password.
+- Admin user is redirected to /admin.
+- /admin calls GET /api/admin/dashboard.
+- Backend allows access only if user.role is admin.
+
+
+Frontend Files Added
+--------------------
+frontend/src/pages/Dashboard/Dashboard.jsx:
+- Customer dashboard page.
+- Calls GET /api/users/me/dashboard.
+- Displays current user name and email.
+- Displays protected dashboard response message.
+
+
+Frontend Files Updated
+----------------------
+frontend/src/context/AuthContext.jsx:
+- Added API-based login.
+- Added API-based register.
+- Added token validation on page reload.
+- Added isLoading state.
+- Saves token and user in localStorage.
+- Clears token and user on invalid session.
+- Exposes useAuth with:
+  - user
+  - isLoading
+  - login
+  - register
+  - logout
+
+frontend/src/routes/ProtectedRoute.jsx:
+- Uses isLoading.
+- Redirects unauthenticated users to /login.
+- Blocks non-admin users from admin-only routes.
+
+frontend/src/App.jsx:
+- Added /dashboard route.
+- /dashboard is protected.
+- /admin remains admin-only.
+
+frontend/src/components/Navbar/Navbar.jsx:
+- Shows Dashboard link for logged-in users.
+- Still shows Orders for logged-in users.
+- Shows Admin link only for admin users.
+
+frontend/src/pages/Login/Login.jsx:
+- Removed demo-token login.
+- Added controlled form state.
+- Calls backend login API.
+- Shows Toastify success/error messages.
+- Redirects admin users to /admin.
+- Redirects customer users to /dashboard.
+
+frontend/src/pages/Register/Register.jsx:
+- Added controlled form state.
+- Calls backend register API.
+- Shows Toastify success/error messages.
+- Redirects new customers to /dashboard.
+
+frontend/src/pages/Admin/Admin.jsx:
+- Calls GET /api/admin/dashboard.
+- Displays admin user name and email.
+- Displays protected admin response message.
+
+
+Database Changes
+----------------
+No new migration was needed for Phase 3.
+
+Phase 3 uses the existing users table created in Phase 2:
+- email
+- full_name
+- password_hash
+- role
+- is_active
+- is_blocked
+
+
+Commands Run
+------------
+Frontend build:
+cd frontend
+npm.cmd run build
+
+Backend app/OpenAPI check:
+cd backend
+.\.venv\Scripts\python.exe -c "from app.main import app; print(sorted(path for path in app.openapi()['paths'] if path.startswith('/api')))"
+
+Password hashing check:
+cd backend
+.\.venv\Scripts\python.exe -c "from app.services.security import hash_password, verify_password; h=hash_password('Password123'); print(verify_password('Password123', h)); print(verify_password('Wrong1234', h))"
+
+Neon auth smoke test:
+- Created temporary customer user.
+- Registered customer.
+- Logged customer in.
+- Verified JWT current-user access.
+- Created temporary admin user.
+- Logged admin in.
+- Verified admin role access.
+- Deleted both temporary users after the test.
+
+
+Phase 3 Verification
+--------------------
+Frontend:
+- Production build passed.
+
+Backend:
+- FastAPI app imports successfully.
+- OpenAPI schema contains:
+  - /api/auth/register
+  - /api/auth/login
+  - /api/auth/me
+  - /api/users/me/dashboard
+  - /api/admin/dashboard
+  - /api/health
+
+Security:
+- Correct password verification returned True.
+- Wrong password verification returned False.
+
+Neon database:
+- Temporary customer auth flow passed.
+- Temporary admin auth flow passed.
+- Temporary test users were cleaned up.
+
+
+Notes / Decisions
+-----------------
+- Public registration always creates a customer role.
+- Admin users are created through the backend utility script, not through public registration.
+- The frontend keeps JWT in localStorage for now because this is a simple starter flow.
+- Later, for stronger production security, token storage can be moved to secure HTTP-only cookies.
+- Phase 3 did not add forgot password, change password, profile editing, or profile image upload. Those can be added in later phases.
+
+
 How To Run The Project Right Now
 ================================
 
@@ -803,4 +1151,3 @@ Verification
 
 Notes / Decisions
 -----------------
-
