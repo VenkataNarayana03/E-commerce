@@ -1,0 +1,806 @@
+E-COMMERCE PROJECT PROGRESS NOTES
+=================================
+
+Purpose of this file
+--------------------
+This file is the running project history. After each phase, update this file so it is easy to understand what was implemented, which files changed, what commands were run, and what the project can do at that point.
+
+
+Current Status
+--------------
+Completed phases:
+- Phase 1: Project Setup
+- Phase 2: Database Design
+
+Next phase:
+- Phase 3: Authentication Module
+
+
+Project Tech Stack
+------------------
+Frontend:
+- React
+- Vite
+- React Router
+- Axios
+- Bootstrap
+- React Toastify
+
+Backend:
+- FastAPI
+- Uvicorn
+- SQLAlchemy
+- Alembic
+- PostgreSQL driver: psycopg2-binary
+- JWT library: python-jose
+- Password hashing library: passlib with bcrypt
+- Environment variables: python-dotenv and pydantic-settings
+
+Database:
+- PostgreSQL
+- Neon PostgreSQL is connected through DATABASE_URL in the root .env file
+
+
+Important Project Folders
+-------------------------
+Root:
+- .env
+- .env.example
+- .gitignore
+- docs/
+- frontend/
+- backend/
+
+Frontend:
+- frontend/src/App.jsx
+- frontend/src/main.jsx
+- frontend/src/assets/
+- frontend/src/components/
+- frontend/src/components/Navbar/
+- frontend/src/components/Footer/
+- frontend/src/components/ProductCard/
+- frontend/src/pages/
+- frontend/src/pages/Home/
+- frontend/src/pages/Products/
+- frontend/src/pages/ProductDetails/
+- frontend/src/pages/Login/
+- frontend/src/pages/Register/
+- frontend/src/pages/Cart/
+- frontend/src/pages/Checkout/
+- frontend/src/pages/Orders/
+- frontend/src/pages/Admin/
+- frontend/src/context/
+- frontend/src/context/AuthContext.jsx
+- frontend/src/context/CartContext.jsx
+- frontend/src/services/api.js
+- frontend/src/routes/ProtectedRoute.jsx
+
+Backend:
+- backend/app/main.py
+- backend/app/config.py
+- backend/app/database.py
+- backend/app/models/
+- backend/app/schemas/
+- backend/app/routes/
+- backend/app/services/
+- backend/app/utils/
+- backend/app/dependencies/
+- backend/alembic/
+- backend/alembic/versions/
+- backend/alembic.ini
+- backend/requirements.txt
+
+Docs:
+- docs/er-diagram.md
+- docs/project-progress.txt
+
+
+PHASE 1: PROJECT SETUP
+======================
+
+Goal
+----
+Create the base full-stack ecommerce project structure and install all required frontend and backend dependencies.
+
+
+What Was Created
+----------------
+Frontend project:
+- Created frontend/ folder.
+- Created a Vite React application structure.
+- Added index.html.
+- Added package.json and package-lock.json.
+- Installed node_modules for frontend dependencies.
+- Created src/ folder with app structure.
+
+Backend project:
+- Created backend/ folder.
+- Created backend/app/ package.
+- Created FastAPI entry file.
+- Created config and database files.
+- Created required backend folders for future modules.
+- Created Python virtual environment at backend/.venv.
+- Created backend/requirements.txt.
+- Installed backend dependencies into the virtual environment.
+
+Root files:
+- Created .env for actual local/Neon configuration.
+- Created .env.example as a safe reference template.
+- Created .gitignore to avoid committing secrets, virtual environments, node_modules, build output, and cache files.
+
+
+Frontend Dependencies Installed
+-------------------------------
+- react
+- react-dom
+- vite
+- @vitejs/plugin-react
+- react-router-dom
+- axios
+- bootstrap
+- react-toastify
+- eslint
+- eslint-plugin-react-hooks
+- eslint-plugin-react-refresh
+- globals
+
+
+Backend Dependencies Installed
+------------------------------
+- fastapi
+- uvicorn[standard]
+- sqlalchemy
+- psycopg2-binary
+- python-dotenv
+- pydantic-settings
+- python-jose[cryptography]
+- passlib[bcrypt]
+- python-multipart
+- email-validator
+
+Alembic was added later during Phase 2.
+
+
+Frontend Files Created
+----------------------
+frontend/index.html:
+- Main HTML file used by Vite.
+- Loads frontend/src/main.jsx.
+
+frontend/src/main.jsx:
+- React entry point.
+- Mounts the app into the root HTML element.
+- Wraps the app with BrowserRouter.
+- Wraps the app with AuthProvider.
+- Wraps the app with CartProvider.
+- Imports Bootstrap CSS.
+- Imports Bootstrap JS bundle.
+- Imports React Toastify CSS.
+- Imports global styles.
+
+frontend/src/App.jsx:
+- Main frontend app component.
+- Defines app routes using React Router.
+- Adds Navbar and Footer around all pages.
+- Adds ToastContainer for notifications.
+- Defines public routes:
+  - /
+  - /products
+  - /products/:id
+  - /login
+  - /register
+  - /cart
+- Defines protected routes:
+  - /checkout
+  - /orders
+  - /admin
+
+frontend/src/styles.css:
+- Basic global styles.
+- App shell layout.
+- Product card image sizing.
+
+frontend/src/services/api.js:
+- Creates an Axios instance.
+- Uses VITE_API_URL from environment variables.
+- Defaults to http://localhost:8000/api.
+- Automatically attaches JWT token from localStorage as Bearer token when present.
+
+frontend/src/context/AuthContext.jsx:
+- Stores current user in React state.
+- Persists user in localStorage.
+- Provides login function.
+- Provides logout function.
+- Exposes useAuth hook.
+
+frontend/src/context/CartContext.jsx:
+- Stores cart items in React state.
+- Persists cart in localStorage.
+- Provides addToCart.
+- Provides removeFromCart.
+- Provides clearCart.
+- Exposes useCart hook.
+
+frontend/src/routes/ProtectedRoute.jsx:
+- Redirects unauthenticated users to /login.
+- Supports adminOnly route protection.
+- Redirects non-admin users away from admin page.
+
+frontend/src/components/Navbar/Navbar.jsx:
+- Displays main navigation.
+- Links to products, cart, login, register, orders, and admin where appropriate.
+- Displays cart item count.
+- Shows logout button when user is logged in.
+
+frontend/src/components/Footer/Footer.jsx:
+- Basic footer component.
+
+frontend/src/components/ProductCard/ProductCard.jsx:
+- Displays a product card.
+- Shows product image, name, description, and price.
+- Adds product to cart through CartContext.
+
+frontend/src/pages/Home/Home.jsx:
+- Basic home page.
+- Links to product browsing.
+
+frontend/src/pages/Products/Products.jsx:
+- Temporary sample product list.
+- Renders ProductCard components.
+
+frontend/src/pages/ProductDetails/ProductDetails.jsx:
+- Reads product id from route params.
+- Placeholder for future product detail API integration.
+
+frontend/src/pages/Login/Login.jsx:
+- Temporary demo login form.
+- Saves demo user and token through AuthContext.
+- Shows Toastify success message.
+
+frontend/src/pages/Register/Register.jsx:
+- Placeholder registration form.
+
+frontend/src/pages/Cart/Cart.jsx:
+- Displays cart items.
+- Calculates total.
+- Supports removing items.
+- Supports clearing cart.
+- Links to checkout.
+
+frontend/src/pages/Checkout/Checkout.jsx:
+- Placeholder checkout page.
+
+frontend/src/pages/Orders/Orders.jsx:
+- Placeholder customer orders page.
+
+frontend/src/pages/Admin/Admin.jsx:
+- Placeholder admin page.
+
+
+Backend Files Created
+---------------------
+backend/app/main.py:
+- Creates FastAPI app.
+- Adds CORS middleware.
+- Reads settings from config.
+- Defines root endpoint:
+  - GET /
+- Defines health endpoint:
+  - GET /api/health
+
+backend/app/config.py:
+- Defines Settings class using pydantic-settings.
+- Reads environment variables from root .env.
+- Supports:
+  - DATABASE_URL
+  - JWT_SECRET_KEY
+  - JWT_ALGORITHM
+  - ACCESS_TOKEN_EXPIRE_MINUTES
+  - BACKEND_CORS_ORIGINS
+- Ignores unrelated .env values such as VITE_API_URL.
+- Provides get_settings function with caching.
+
+backend/app/database.py:
+- Creates SQLAlchemy engine from DATABASE_URL.
+- Creates SessionLocal for database sessions.
+- Defines Base class for SQLAlchemy models.
+- Defines get_db dependency for FastAPI routes.
+
+backend/requirements.txt:
+- Lists backend Python dependencies.
+
+
+Root Environment Files
+----------------------
+.env:
+- Actual project environment variables.
+- Contains database connection details.
+- Contains JWT config.
+- Contains CORS config.
+- Contains frontend API URL.
+- This file is ignored by git because it can contain secrets.
+
+.env.example:
+- Safe template version of .env.
+- Useful for documenting required environment variables.
+
+.gitignore:
+- Ignores node_modules.
+- Ignores frontend build output.
+- Ignores Python virtual environments.
+- Ignores Python cache files.
+- Ignores .env files.
+- Keeps .env.example allowed.
+- Ignores IDE and OS files.
+
+
+Phase 1 Verification
+--------------------
+Frontend build was tested with:
+cd frontend
+npm.cmd run build
+
+Backend import was tested with:
+cd backend
+.\.venv\Scripts\python.exe -c "from app.main import app; print(app.title)"
+
+Result:
+- Frontend build passed.
+- Backend app imported successfully.
+
+
+PHASE 2: DATABASE DESIGN
+========================
+
+Goal
+----
+Implement the database design workflow:
+
+ER Diagram
+   ↓
+SQLAlchemy Models
+   ↓
+Alembic Migration
+   ↓
+Neon PostgreSQL Tables
+
+
+Source Plan Used
+----------------
+The file Ecommerce_Roles_Phases_Detailed.docx was reviewed.
+
+Phase 2 entities from the plan:
+- Users
+- Categories
+- Products
+- Cart Items
+- Orders
+- Order Items
+- Payments
+
+
+ER Diagram
+----------
+Created:
+- docs/er-diagram.md
+
+The ER diagram is written in Mermaid syntax so it can be viewed in Markdown tools that support Mermaid diagrams.
+
+Entities included:
+- USERS
+- CATEGORIES
+- PRODUCTS
+- CART_ITEMS
+- ORDERS
+- ORDER_ITEMS
+- PAYMENTS
+
+Main relationships:
+- One user can have many cart items.
+- One user can place many orders.
+- One category can contain many products.
+- One product can appear in many cart items.
+- One product can appear in many order items.
+- One order contains many order items.
+- One order can have zero or one payment.
+
+
+SQLAlchemy Models Created
+-------------------------
+backend/app/models/__init__.py:
+- Imports all model classes so Alembic can discover them.
+
+backend/app/models/user.py:
+- Defines User model.
+- Table name: users.
+
+User fields:
+- id
+- email
+- full_name
+- password_hash
+- role
+- is_active
+- is_blocked
+- profile_image_url
+- created_at
+- updated_at
+
+User relationships:
+- cart_items
+- orders
+
+backend/app/models/category.py:
+- Defines Category model.
+- Table name: categories.
+
+Category fields:
+- id
+- name
+- slug
+- description
+- is_active
+- created_at
+- updated_at
+
+Category relationships:
+- products
+
+backend/app/models/product.py:
+- Defines Product model.
+- Table name: products.
+
+Product fields:
+- id
+- category_id
+- name
+- slug
+- description
+- price
+- stock_quantity
+- image_url
+- is_active
+- created_at
+- updated_at
+
+Product relationships:
+- category
+- cart_items
+- order_items
+
+backend/app/models/cart_item.py:
+- Defines CartItem model.
+- Table name: cart_items.
+
+CartItem fields:
+- id
+- user_id
+- product_id
+- quantity
+- created_at
+- updated_at
+
+CartItem relationships:
+- user
+- product
+
+CartItem important rule:
+- One user can have only one cart row per product.
+- This is enforced by unique constraint:
+  - user_id + product_id
+
+backend/app/models/order.py:
+- Defines Order model.
+- Defines OrderItem model.
+
+Order table name:
+- orders
+
+Order fields:
+- id
+- user_id
+- order_number
+- status
+- payment_method
+- shipping_name
+- shipping_phone
+- shipping_address_line1
+- shipping_address_line2
+- shipping_city
+- shipping_state
+- shipping_postal_code
+- shipping_country
+- subtotal
+- shipping_fee
+- total_amount
+- created_at
+- updated_at
+
+Order relationships:
+- user
+- items
+- payment
+
+OrderItem table name:
+- order_items
+
+OrderItem fields:
+- id
+- order_id
+- product_id
+- product_name
+- unit_price
+- quantity
+- line_total
+
+OrderItem relationships:
+- order
+- product
+
+Important OrderItem design decision:
+- product_id can be null if a product is deleted later.
+- product_name and unit_price are stored directly so old orders still show what the customer purchased.
+
+backend/app/models/payment.py:
+- Defines Payment model.
+- Table name: payments.
+
+Payment fields:
+- id
+- order_id
+- amount
+- method
+- status
+- provider
+- transaction_id
+- paid_at
+- created_at
+- updated_at
+
+Payment relationships:
+- order
+
+
+Database Tables Created
+-----------------------
+Tables created in Neon PostgreSQL:
+- alembic_version
+- users
+- categories
+- products
+- cart_items
+- orders
+- order_items
+- payments
+
+alembic_version:
+- Internal Alembic table.
+- Tracks which migration revision has been applied.
+
+
+Important Database Rules
+------------------------
+users:
+- email must be unique.
+- role is restricted to:
+  - customer
+  - admin
+
+categories:
+- name must be unique.
+- slug must be unique.
+
+products:
+- belongs to a category.
+- slug must be unique.
+- price cannot be negative.
+- stock_quantity cannot be negative.
+
+cart_items:
+- belongs to a user.
+- belongs to a product.
+- quantity must be greater than 0.
+- one user cannot have duplicate cart rows for the same product.
+
+orders:
+- belongs to a user.
+- order_number must be unique.
+- status is restricted to:
+  - pending
+  - confirmed
+  - processing
+  - shipped
+  - out_for_delivery
+  - delivered
+  - cancelled
+- payment_method is restricted to:
+  - cod
+  - upi
+  - razorpay
+- subtotal cannot be negative.
+- shipping_fee cannot be negative.
+- total_amount cannot be negative.
+
+order_items:
+- belongs to an order.
+- optionally belongs to a product.
+- unit_price cannot be negative.
+- quantity must be greater than 0.
+- line_total cannot be negative.
+
+payments:
+- belongs to one order.
+- order_id is unique, meaning one order has one payment record.
+- amount cannot be negative.
+- method is restricted to:
+  - cod
+  - upi
+  - razorpay
+- status is restricted to:
+  - pending
+  - paid
+  - failed
+  - refunded
+- transaction_id is unique when present.
+
+
+Alembic Setup
+-------------
+Files created:
+- backend/alembic.ini
+- backend/alembic/env.py
+- backend/alembic/script.py.mako
+- backend/alembic/versions/20260704_0001_create_core_ecommerce_tables.py
+- backend/alembic/versions/.gitkeep
+
+backend/alembic.ini:
+- Main Alembic configuration file.
+- Points Alembic to the backend/alembic folder.
+
+backend/alembic/env.py:
+- Loads project settings from backend/app/config.py.
+- Reads DATABASE_URL from root .env.
+- Imports app.models so Alembic can see SQLAlchemy metadata.
+- Uses Base.metadata from backend/app/database.py.
+
+backend/alembic/script.py.mako:
+- Template used for future Alembic migration files.
+
+backend/alembic/versions/20260704_0001_create_core_ecommerce_tables.py:
+- First migration file.
+- Creates all Phase 2 tables.
+- Creates indexes.
+- Creates foreign keys.
+- Creates check constraints.
+- Creates unique constraints.
+- Includes downgrade logic to drop tables in safe reverse order.
+
+
+Migration Applied
+-----------------
+Command run:
+cd backend
+.\.venv\Scripts\python.exe -m alembic upgrade head
+
+Result:
+- Migration completed successfully.
+- Neon PostgreSQL database was upgraded to revision:
+  - 20260704_0001
+
+
+Phase 2 Verification
+--------------------
+Checked model metadata with:
+cd backend
+.\.venv\Scripts\python.exe -c "from app.database import Base; import app.models; print(sorted(Base.metadata.tables.keys()))"
+
+Result:
+- cart_items
+- categories
+- order_items
+- orders
+- payments
+- products
+- users
+
+Checked Alembic current revision with:
+cd backend
+.\.venv\Scripts\python.exe -m alembic current
+
+Result:
+- 20260704_0001 (head)
+
+Checked actual Neon database table names with:
+cd backend
+.\.venv\Scripts\python.exe -c "from sqlalchemy import inspect; from app.database import engine; print(sorted(inspect(engine).get_table_names()))"
+
+Result:
+- alembic_version
+- cart_items
+- categories
+- order_items
+- orders
+- payments
+- products
+- users
+
+
+Known Notes
+-----------
+PowerShell sometimes shows this warning:
+- profile.ps1 cannot be loaded because it is not digitally signed.
+
+This warning did not block:
+- npm installs
+- pip installs
+- frontend build
+- backend imports
+- Alembic migrations
+- Neon database table creation
+
+
+How To Run The Project Right Now
+================================
+
+Run frontend:
+cd frontend
+npm.cmd run dev
+
+Run backend:
+cd backend
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+
+Check backend health endpoint after backend starts:
+http://localhost:8000/api/health
+
+
+Useful Backend Commands
+=======================
+
+Check Alembic revision:
+cd backend
+.\.venv\Scripts\python.exe -m alembic current
+
+Apply migrations:
+cd backend
+.\.venv\Scripts\python.exe -m alembic upgrade head
+
+Create a future migration manually:
+cd backend
+.\.venv\Scripts\python.exe -m alembic revision -m "migration message"
+
+Create a future migration from model changes:
+cd backend
+.\.venv\Scripts\python.exe -m alembic revision --autogenerate -m "migration message"
+
+
+Future Phase Update Template
+============================
+
+PHASE X: PHASE NAME
+===================
+
+Goal
+----
+
+What Was Implemented
+--------------------
+
+Files Added
+-----------
+
+Files Updated
+-------------
+
+Database Changes
+----------------
+
+Commands Run
+------------
+
+Verification
+------------
+
+Notes / Decisions
+-----------------
+

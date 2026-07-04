@@ -1,0 +1,23 @@
+:root {
+  color: #212529;
+  background: #f7f8fa;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f7f8fa;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-img {
+  height: 180px;
+  object-fit: cover;
+}
+
