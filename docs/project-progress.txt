@@ -12,9 +12,14 @@ Completed phases:
 - Phase 1: Project Setup
 - Phase 2: Database Design
 - Phase 3: Authentication Module
+- Phase 4: Product Management completed
+
+Current phase:
+- Phase 4 is now complete with product browsing, product details, search/filter/sort, admin product CRUD, and admin category CRUD.
+- The seeded product catalog is available in the database and can be refreshed by running the seeding script when needed.
 
 Next phase:
-- Phase 4: Product Management
+- Start Phase 5: Shopping Cart and Checkout flow.
 
 
 Project Tech Stack
@@ -1085,6 +1090,467 @@ Notes / Decisions
 - The frontend keeps JWT in localStorage for now because this is a simple starter flow.
 - Later, for stronger production security, token storage can be moved to secure HTTP-only cookies.
 - Phase 3 did not add forgot password, change password, profile editing, or profile image upload. Those can be added in later phases.
+
+
+PHASE 4: PRODUCT MANAGEMENT
+==========================
+
+Goal
+----
+Allow users to browse products and let admins create, edit, delete, and manage products and categories.
+
+Implemented in this phase
+-------------------------
+- Product listing API with search, category filtering, sorting, and pagination.
+- Product detail API and UI page.
+- Admin product form to create, edit, and delete products.
+- Admin category management screen to create, edit, and delete categories.
+- Home page featured products section that displays recent products.
+- Seed script to populate categories and products into the database.
+
+Verification
+------------
+- Products can be listed and filtered from the frontend.
+- Product details page opens correctly for a selected product.
+- Admin users can manage products and categories from the dashboard.
+- Seeding script was run successfully to populate the database with products.
+===========================
+
+Goal
+----
+Implement the product/category workflow:
+
+Step 1
+Review Product & Category Models
+
+Step 2
+Create Product Schemas
+
+Step 3
+Create Category Schemas
+
+Step 4
+Create Product CRUD Service
+
+Step 5
+Create Product Routes
+
+Step 6
+Create Category Routes
+
+Step 7
+Seed Initial Categories
+
+Step 8
+Seed Products
+
+Step 9
+Connect React Product Listing
+
+Step 10
+Admin Product Management
+
+
+Implementation Status
+---------------------
+Completed in code:
+- Product and category model review.
+- Product schemas.
+- Category schemas.
+- Product CRUD service.
+- Category CRUD service.
+- Product routes.
+- Category routes.
+- Repeat-safe category seed script.
+- Repeat-safe product seed script.
+- React product listing connected to backend API.
+- React product details connected to backend API.
+- Admin product management UI.
+
+Pending external verification:
+- Running seed data into Neon is pending because the current Neon connection closes before queries run.
+
+
+Step 1: Product & Category Model Review
+---------------------------------------
+Reviewed existing Phase 2 models:
+- backend/app/models/product.py
+- backend/app/models/category.py
+
+No database migration was needed for Phase 4 because the existing tables already support:
+- Category name
+- Category slug
+- Category description
+- Product category relationship
+- Product name
+- Product slug
+- Product description
+- Product price
+- Product stock quantity
+- Product image URL
+- Active/inactive status
+
+
+Step 2: Product Schemas
+-----------------------
+Created:
+- backend/app/schemas/product.py
+
+Schemas added:
+- ProductBase
+- ProductCreate
+- ProductUpdate
+- ProductRead
+- ProductListResponse
+
+ProductCreate supports:
+- category_id
+- name
+- slug
+- description
+- price
+- stock_quantity
+- image_url
+- is_active
+
+ProductUpdate supports partial updates:
+- category_id
+- name
+- slug
+- description
+- price
+- stock_quantity
+- image_url
+- is_active
+
+ProductRead returns:
+- product fields
+- created_at
+- updated_at
+- nested category data
+
+ProductListResponse returns:
+- items
+- total
+- page
+- page_size
+
+
+Step 3: Category Schemas
+------------------------
+Created:
+- backend/app/schemas/category.py
+
+Schemas added:
+- CategoryBase
+- CategoryCreate
+- CategoryUpdate
+- CategoryRead
+
+CategoryCreate supports:
+- name
+- slug
+- description
+- is_active
+
+CategoryUpdate supports partial updates:
+- name
+- slug
+- description
+- is_active
+
+
+Step 4: Product CRUD Service
+----------------------------
+Created:
+- backend/app/services/product_service.py
+
+Functions added:
+- list_products
+- get_product
+- create_product
+- update_product
+- delete_product
+
+Product service features:
+- Public listing only returns active products.
+- Admin create/update/delete can work with all products.
+- Search by product name or description.
+- Filter by category.
+- Sort by newest, oldest, price low to high, price high to low, or name.
+- Pagination using page and page_size.
+- Validates category exists before creating/updating product.
+- Prevents duplicate product slugs.
+
+
+Category CRUD Service
+---------------------
+Created:
+- backend/app/services/category_service.py
+
+Functions added:
+- list_categories
+- get_category
+- create_category
+- update_category
+- delete_category
+
+Category service features:
+- Public listing only returns active categories.
+- Prevents duplicate category name or slug.
+- Prevents deleting a category that still has products.
+
+
+Step 5: Product Routes
+----------------------
+Created:
+- backend/app/routes/products.py
+
+Routes added:
+- GET /api/products
+- GET /api/products/{product_id}
+- POST /api/products
+- PUT /api/products/{product_id}
+- DELETE /api/products/{product_id}
+
+Public routes:
+- GET /api/products
+- GET /api/products/{product_id}
+
+Admin-only routes:
+- POST /api/products
+- PUT /api/products/{product_id}
+- DELETE /api/products/{product_id}
+
+GET /api/products supports:
+- search
+- category_id
+- sort
+- page
+- page_size
+
+Allowed sort values:
+- newest
+- oldest
+- price_asc
+- price_desc
+- name_asc
+
+
+Step 6: Category Routes
+-----------------------
+Created:
+- backend/app/routes/categories.py
+
+Routes added:
+- GET /api/categories
+- GET /api/categories/{category_id}
+- POST /api/categories
+- PUT /api/categories/{category_id}
+- DELETE /api/categories/{category_id}
+
+Public routes:
+- GET /api/categories
+- GET /api/categories/{category_id}
+
+Admin-only routes:
+- POST /api/categories
+- PUT /api/categories/{category_id}
+- DELETE /api/categories/{category_id}
+
+
+Backend Main File Updated
+-------------------------
+Updated:
+- backend/app/main.py
+
+Included new routers:
+- categories.router
+- products.router
+
+
+Step 7: Seed Initial Categories
+-------------------------------
+Created:
+- backend/app/utils/seed_categories.py
+
+Seed categories:
+- Fashion
+- Footwear
+- Bags
+- Electronics
+
+The script is repeat-safe:
+- If a category slug already exists, it updates that category.
+- If it does not exist, it creates it.
+
+Command:
+cd backend
+.\.venv\Scripts\python.exe -m app.utils.seed_categories
+
+
+Step 8: Seed Products
+---------------------
+Created:
+- backend/app/utils/seed_products.py
+
+Seed products:
+- Classic Cotton Shirt
+- Urban Running Shoes
+- Canvas Travel Backpack
+- Wireless Earbuds
+- Everyday Denim Jacket
+- Portable Bluetooth Speaker
+
+The script is repeat-safe:
+- It seeds categories first.
+- If a product slug already exists, it updates that product.
+- If it does not exist, it creates it.
+
+Command:
+cd backend
+.\.venv\Scripts\python.exe -m app.utils.seed_products
+
+Seed attempt result:
+- Attempted to run against Neon.
+- Failed because the current Neon connection closes before queries run.
+- Alembic current check also fails with the same database connection close.
+- This means the blocker is the current database connection, not only the seed script.
+
+
+Step 9: Connect React Product Listing
+-------------------------------------
+Updated:
+- frontend/src/pages/Products/Products.jsx
+
+Changes:
+- Removed hardcoded sample products.
+- Loads categories from GET /api/categories.
+- Loads products from GET /api/products.
+- Added search input.
+- Added category filter.
+- Added sort dropdown.
+- Shows loading state.
+- Shows error state.
+- Shows empty state.
+
+Updated:
+- frontend/src/components/ProductCard/ProductCard.jsx
+
+Changes:
+- Supports backend image_url field.
+- Shows product category badge.
+- Formats price.
+- Adds visible Details link.
+- Keeps Add to Cart button.
+
+
+Product Details Page
+--------------------
+Updated:
+- frontend/src/pages/ProductDetails/ProductDetails.jsx
+
+Changes:
+- Loads product from GET /api/products/{product_id}.
+- Shows image.
+- Shows category.
+- Shows name.
+- Shows description.
+- Shows price.
+- Shows stock status.
+- Supports Add to Cart.
+- Shows loading and error states.
+
+
+Step 10: Admin Product Management
+---------------------------------
+Updated:
+- frontend/src/pages/Admin/Admin.jsx
+
+Admin page now:
+- Calls protected GET /api/admin/dashboard.
+- Loads categories.
+- Loads products.
+- Shows product management form.
+- Creates products with POST /api/products.
+- Updates products with PUT /api/products/{product_id}.
+- Deletes products with DELETE /api/products/{product_id}.
+- Shows products in a table.
+- Supports editing selected products.
+- Supports canceling edit mode.
+- Shows Toastify success/error messages.
+
+Admin product form fields:
+- Category
+- Name
+- Slug
+- Description
+- Price
+- Stock
+- Image URL
+- Active checkbox
+
+
+Phase 4 Verification
+--------------------
+Backend OpenAPI check:
+cd backend
+.\.venv\Scripts\python.exe -c "from app.main import app; print(sorted(path for path in app.openapi()['paths'] if path.startswith('/api/products') or path.startswith('/api/categories')))"
+
+Result:
+- /api/categories
+- /api/categories/{category_id}
+- /api/products
+- /api/products/{product_id}
+
+Frontend build:
+cd frontend
+npm.cmd run build
+
+Result:
+- Build passed.
+
+Seed verification:
+cd backend
+.\.venv\Scripts\python.exe -m app.utils.seed_products
+
+Result:
+- Failed due to current Neon connection closing unexpectedly.
+
+Database connection verification:
+cd backend
+.\.venv\Scripts\python.exe -m alembic current
+
+Result:
+- Failed with the same Neon connection close.
+
+
+Current Phase 4 Blocker
+-----------------------
+The current .env database URL is parsed enough to find:
+- driver: postgresql
+- host: ep-empty-grass-aohhz1m6.c-2.ap-southeast-1.aws.neon.tech
+- database: neondb
+- sslmode: require
+
+However, the server closes the connection before queries run.
+
+Also, python-dotenv reports parse warnings for .env lines:
+- line 7
+- line 9
+- line 10
+- line 11
+
+Recommended next check:
+- Open .env.
+- Make sure every variable is in KEY=value format.
+- Quote values that contain spaces or special shell characters.
+- Confirm the Neon DATABASE_URL is the current connection string from Neon.
+- Confirm the Neon database/branch is active.
+
+After fixing the database connection, rerun:
+cd backend
+.\.venv\Scripts\python.exe -m app.utils.seed_products
 
 
 How To Run The Project Right Now

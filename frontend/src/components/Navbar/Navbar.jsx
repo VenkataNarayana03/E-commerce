@@ -40,9 +40,14 @@ function Navbar() {
               </NavLink>
             )}
             {user?.role === "admin" && (
-              <NavLink className="nav-link" to="/admin">
-                Admin
-              </NavLink>
+              <>
+                <NavLink className="nav-link" to="/admin">
+                  Admin
+                </NavLink>
+                <NavLink className="nav-link" to="/admin/users">
+                  Users
+                </NavLink>
+              </>
             )}
           </div>
           <div className="navbar-nav align-items-lg-center">

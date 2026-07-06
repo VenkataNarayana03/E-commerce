@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
+import BackButton from "../../components/BackButton/BackButton.jsx";
+import { formatDualPrice } from "../../utils/price.js";
 
 function Cart() {
   const { items, removeFromCart, clearCart } = useCart();
@@ -7,6 +9,7 @@ function Cart() {
 
   return (
     <>
+      <BackButton />
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="h3 mb-0">Cart</h1>
         {items.length > 0 && (
@@ -26,7 +29,7 @@ function Cart() {
                 <div className="small text-muted">Qty: {item.quantity}</div>
               </div>
               <div className="text-end">
-                <div>${(item.price * item.quantity).toFixed(2)}</div>
+                <div>{formatDualPrice(item.price * item.quantity)}</div>
                 <button className="btn btn-link btn-sm p-0" onClick={() => removeFromCart(item.id)}>
                   Remove
                 </button>
@@ -35,7 +38,7 @@ function Cart() {
           ))}
           <div className="d-flex justify-content-between pt-3">
             <strong>Total</strong>
-            <strong>${total.toFixed(2)}</strong>
+            <strong>{formatDualPrice(total)}</strong>
           </div>
           <Link className="btn btn-primary w-100 mt-3" to="/checkout">
             Checkout

@@ -3,6 +3,13 @@ from datetime import datetime
 from pydantic import BaseModel, EmailStr
 
 
+class AdminSummary(BaseModel):
+    total_users: int
+    total_products: int
+    active_categories: int
+    blocked_users: int
+
+
 class UserRead(BaseModel):
     id: int
     email: EmailStr

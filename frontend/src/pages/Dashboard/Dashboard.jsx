@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api.js";
 import { useAuth } from "../../context/AuthContext.jsx";
+import BackButton from "../../components/BackButton/BackButton.jsx";
 
 function Dashboard() {
   const { user } = useAuth();
@@ -15,6 +16,7 @@ function Dashboard() {
 
   return (
     <>
+      <BackButton />
       <h1 className="h3">Customer Dashboard</h1>
       <div className="bg-white border rounded p-4">
         <p className="mb-1">

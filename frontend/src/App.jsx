@@ -11,6 +11,7 @@ import Cart from "./pages/Cart/Cart.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Orders from "./pages/Orders/Orders.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import Users from "./pages/Users/Users.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
@@ -55,6 +56,14 @@ function App() {
             element={
               <ProtectedRoute adminOnly>
                 <Admin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute adminOnly>
+                <Users />
               </ProtectedRoute>
             }
           />
