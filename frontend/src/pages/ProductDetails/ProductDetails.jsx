@@ -115,7 +115,7 @@ function ProductDetails() {
                 onClick={handleAdd}
                 disabled={product.stock_quantity === 0 || loading}
               >
-                🛒 Add to Cart
+                Add to Cart
               </button>
               <Link to="/cart" className="btn btn-outline-secondary btn-lg rounded-pill px-4 fw-semibold">
                 View Cart

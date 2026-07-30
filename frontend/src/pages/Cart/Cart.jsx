@@ -55,7 +55,6 @@ function Cart() {
 
       {items.length === 0 ? (
         <div className="text-center py-5 bg-white rounded-4 border shadow-sm my-3">
-          <div className="display-1 text-muted mb-3">🛒</div>
           <h3 className="h4 text-dark mb-2">Your cart is empty</h3>
           <p className="text-muted mb-4">Looks like you haven't added any products to your cart yet.</p>
           <Link to="/products" className="btn btn-primary btn-lg rounded-pill px-4 shadow-sm">
@@ -165,7 +164,7 @@ function Cart() {
 
               {shippingCost > 0 && (
                 <div className="small text-info mt-2">
-                  💡 Add {formatDualPrice(50 - subtotal)} more for <strong>FREE Shipping</strong>!
+                  Add {formatDualPrice(50 - subtotal)} more for <strong>FREE Shipping</strong>!
                 </div>
               )}
 

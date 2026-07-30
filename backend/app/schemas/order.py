@@ -3,6 +3,8 @@ from decimal import Decimal
 
 from pydantic import BaseModel, Field
 
+from app.schemas.user import UserRead
+
 
 class OrderItemRead(BaseModel):
     id: int
@@ -47,6 +49,7 @@ class OrderRead(BaseModel):
     created_at: datetime
     updated_at: datetime
     items: list[OrderItemRead]
+    user: UserRead | None = None
 
     model_config = {"from_attributes": True}
 

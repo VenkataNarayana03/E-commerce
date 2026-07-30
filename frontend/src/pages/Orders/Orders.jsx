@@ -65,7 +65,6 @@ function Orders() {
         <div className="alert alert-danger rounded-3">{error}</div>
       ) : orders.length === 0 ? (
         <div className="text-center py-5 bg-white border rounded-4 shadow-sm">
-          <div className="display-1 text-muted mb-3">📦</div>
           <h3 className="h4 text-dark mb-2">No orders placed yet</h3>
           <p className="text-muted mb-4">You haven't placed any orders with us yet.</p>
           <Link to="/products" className="btn btn-primary rounded-pill px-4 shadow-sm">

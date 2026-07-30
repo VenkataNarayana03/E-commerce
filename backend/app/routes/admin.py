@@ -1,15 +1,17 @@
+from decimal import Decimal
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from app.services.security import decode_access_token
-
 from app.database import get_db
 from app.dependencies.auth import get_current_admin
 from app.models.category import Category
+from app.models.order import Order
 from app.models.product import Product
 from app.models.user import User
+from app.schemas.order import OrderListResponse, OrderRead
 from app.schemas.user import AdminDashboard, AdminSummary, UserRead
+from app.services import order_service
 
 router = APIRouter(prefix="/api/admin", tags=["Admin"])
 
@@ -28,12 +30,16 @@ def admin_summary(
     total_products = db.scalar(select(func.count()).select_from(Product)) or 0
     active_categories = db.scalar(select(func.count()).select_from(Category).where(Category.is_active.is_(True))) or 0
     blocked_users = db.scalar(select(func.count()).select_from(User).where(User.is_blocked.is_(True))) or 0
+    total_orders = db.scalar(select(func.count()).select_from(Order)) or 0
+    total_revenue = db.scalar(select(func.sum(Order.total_amount)).where(Order.status != "cancelled")) or Decimal("0.00")
 
     return AdminSummary(
         total_users=total_users,
         total_products=total_products,
         active_categories=active_categories,
         blocked_users=blocked_users,
+        total_orders=total_orders,
+        total_revenue=Decimal(str(total_revenue)),
     )
 
 
@@ -82,3 +88,25 @@ def delete_user(
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+
+@router.get("/orders", response_model=OrderListResponse)
+def admin_list_orders(
+    db: Session = Depends(get_db),
+    _admin: User = Depends(get_current_admin),
+) -> OrderListResponse:
+    orders, total = order_service.get_all_orders_admin(db)
+    return OrderListResponse(items=orders, total=total)
+
+
+@router.put("/orders/{order_id}/status", response_model=OrderRead)
+def admin_update_order_status(
+    order_id: int,
+    payload: dict[str, str],
+    db: Session = Depends(get_db),
+    _admin: User = Depends(get_current_admin),
+) -> OrderRead:
+    status_value = payload.get("status")
+    if not status_value:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Missing 'status' in request body")
+
+    return order_service.update_order_status_admin(db, order_id, status_value)

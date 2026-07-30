@@ -11,6 +11,16 @@ from app.models.order import Order, OrderItem
 from app.models.product import Product
 from app.schemas.order import OrderCreate
 
+VALID_ORDER_STATUSES = {
+    "pending",
+    "confirmed",
+    "processing",
+    "shipped",
+    "out_for_delivery",
+    "delivered",
+    "cancelled",
+}
+
 
 def generate_order_number() -> str:
     now_str = datetime.utcnow().strftime("%Y%m%d%H%M%S")
@@ -125,11 +135,40 @@ def get_user_orders(db: Session, user_id: int) -> tuple[list[Order], int]:
     return orders, len(orders)
 
 
+def get_all_orders_admin(db: Session) -> tuple[list[Order], int]:
+    stmt = (
+        select(Order)
+        .options(joinedload(Order.items), joinedload(Order.user))
+        .order_by(Order.created_at.desc())
+    )
+    orders = list(db.scalars(stmt).unique().all())
+    return orders, len(orders)
+
+
+def update_order_status_admin(db: Session, order_id: int, new_status: str) -> Order:
+    status_clean = new_status.lower().strip()
+    if status_clean not in VALID_ORDER_STATUSES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid status '{new_status}'. Allowed values: {', '.join(VALID_ORDER_STATUSES)}",
+        )
+
+    stmt = select(Order).where(Order.id == order_id).options(joinedload(Order.items))
+    order = db.scalar(stmt)
+    if not order:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
+
+    order.status = status_clean
+    db.commit()
+    db.refresh(order)
+    return order
+
+
 def get_order_by_id(db: Session, user_id: int, order_id: int, is_admin: bool = False) -> Order:
     stmt = (
         select(Order)
         .where(Order.id == order_id)
-        .options(joinedload(Order.items))
+        .options(joinedload(Order.items), joinedload(Order.user))
     )
     order = db.scalar(stmt)
     if not order:

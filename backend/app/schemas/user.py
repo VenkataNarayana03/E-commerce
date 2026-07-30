@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from decimal import Decimal
 from pydantic import BaseModel, EmailStr
 
 
@@ -8,6 +8,8 @@ class AdminSummary(BaseModel):
     total_products: int
     active_categories: int
     blocked_users: int
+    total_orders: int = 0
+    total_revenue: Decimal = Decimal("0.00")
 
 
 class UserRead(BaseModel):
@@ -31,4 +33,3 @@ class UserDashboard(BaseModel):
 class AdminDashboard(BaseModel):
     user: UserRead
     message: str
-

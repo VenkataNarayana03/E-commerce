@@ -47,7 +47,7 @@ function Checkout() {
       const order = await orderService.createOrder(formData);
       setCompletedOrder(order);
       await fetchCart(); // Refresh cart (will be empty now)
-      toast.success("Order placed successfully! 🎉");
+      toast.success("Order placed successfully!");
     } catch (error) {
       const msg = error.response?.data?.detail || "Failed to place order. Please try again.";
       toast.error(msg);
@@ -61,8 +61,7 @@ function Checkout() {
     return (
       <div className="container py-4">
         <div className="bg-white border rounded-4 p-4 p-md-5 text-center shadow-sm max-w-2xl mx-auto">
-          <div className="display-1 text-success mb-3">✅</div>
-          <h1 className="h3 font-weight-bold text-dark mb-2">Order Confirmed!</h1>
+          <h1 className="h3 font-weight-bold text-success mb-2">Order Confirmed!</h1>
           <p className="text-muted mb-4">
             Thank you for your order, <strong>{completedOrder.shipping_name}</strong>. Your order has been received and is being processed.
           </p>
