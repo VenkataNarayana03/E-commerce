@@ -15,7 +15,7 @@ SEED_PRODUCTS = [
         "description": "Breathable cotton shirt for daily wear.",
         "price": "29.99",
         "stock_quantity": 45,
-        "image_url": "https://images.unsplash.com/photo-1520975918487-3d3f1a9f4f0b?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "fashion",
@@ -24,7 +24,7 @@ SEED_PRODUCTS = [
         "description": "Layer-ready denim jacket with a relaxed fit.",
         "price": "64.99",
         "stock_quantity": 18,
-        "image_url": "https://images.unsplash.com/photo-1472417583565-62e7bdeda490?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "electronics",
@@ -33,7 +33,7 @@ SEED_PRODUCTS = [
         "description": "Water-resistant speaker with rich sound for travel.",
         "price": "39.99",
         "stock_quantity": 41,
-        "image_url": "https://images.unsplash.com/photo-1570813093999-2a1f8b9a3f3b?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "electronics",
@@ -42,7 +42,7 @@ SEED_PRODUCTS = [
         "description": "Compact earbuds with clear audio and charging case.",
         "price": "59.99",
         "stock_quantity": 60,
-        "image_url": "https://images.unsplash.com/photo-1591014050693-1a0f5b305d9d?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "fashion",
@@ -51,7 +51,7 @@ SEED_PRODUCTS = [
         "description": "Smart casual polo shirt with a soft finish.",
         "price": "24.50",
         "stock_quantity": 36,
-        "image_url": "https://images.unsplash.com/photo-1520975918364-9b1d9a9f3a5b?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "fashion",
@@ -60,7 +60,7 @@ SEED_PRODUCTS = [
         "description": "Durable denim jeans with a tailored silhouette.",
         "price": "44.99",
         "stock_quantity": 27,
-        "image_url": "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "fashion",
@@ -69,7 +69,7 @@ SEED_PRODUCTS = [
         "description": "Lightweight dress designed for warm days.",
         "price": "39.00",
         "stock_quantity": 22,
-        "image_url": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "fashion",
@@ -78,7 +78,7 @@ SEED_PRODUCTS = [
         "description": "Packable jacket for daily commuting and travel.",
         "price": "54.95",
         "stock_quantity": 19,
-        "image_url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "fashion",
@@ -87,7 +87,7 @@ SEED_PRODUCTS = [
         "description": "Soft scarf crafted for cool weather comfort.",
         "price": "19.99",
         "stock_quantity": 31,
-        "image_url": "https://images.unsplash.com/photo-1519741499600-1ee8b0a2d6f6?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "electronics",
@@ -96,7 +96,7 @@ SEED_PRODUCTS = [
         "description": "Flagship phone with advanced camera and battery life.",
         "price": "899.99",
         "stock_quantity": 14,
-        "image_url": "https://images.unsplash.com/photo-1510557880182-3c5a4e6e3a6e?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "electronics",
@@ -105,7 +105,7 @@ SEED_PRODUCTS = [
         "description": "Portable laptop with vivid display and fast performance.",
         "price": "749.00",
         "stock_quantity": 12,
-        "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "electronics",
@@ -114,7 +114,7 @@ SEED_PRODUCTS = [
         "description": "Slim tablet ideal for work, study, and entertainment.",
         "price": "499.50",
         "stock_quantity": 17,
-        "image_url": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "electronics",
@@ -123,7 +123,7 @@ SEED_PRODUCTS = [
         "description": "Fitness tracking smartwatch with sleek design.",
         "price": "189.99",
         "stock_quantity": 23,
-        "image_url": "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "home-kitchen",
@@ -132,7 +132,7 @@ SEED_PRODUCTS = [
         "description": "Powerful mixer grinder for everyday cooking needs.",
         "price": "89.99",
         "stock_quantity": 16,
-        "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1578643463396-0997cb5328c1?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "home-kitchen",
@@ -141,7 +141,7 @@ SEED_PRODUCTS = [
         "description": "Versatile blender for smoothies, soups, and sauces.",
         "price": "69.95",
         "stock_quantity": 20,
-        "image_url": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "home-kitchen",
@@ -150,7 +150,7 @@ SEED_PRODUCTS = [
         "description": "Durable cookware set for modern kitchens.",
         "price": "129.00",
         "stock_quantity": 11,
-        "image_url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "home-kitchen",
@@ -168,7 +168,7 @@ SEED_PRODUCTS = [
         "description": "Healthy cooking with fast heat circulation.",
         "price": "79.90",
         "stock_quantity": 18,
-        "image_url": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "beauty-personal-care",
@@ -177,7 +177,7 @@ SEED_PRODUCTS = [
         "description": "Refreshing cleanser suitable for daily use.",
         "price": "12.99",
         "stock_quantity": 40,
-        "image_url": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "beauty-personal-care",
@@ -186,7 +186,7 @@ SEED_PRODUCTS = [
         "description": "Nourishing shampoo for smooth and healthy hair.",
         "price": "14.50",
         "stock_quantity": 34,
-        "image_url": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "beauty-personal-care",
@@ -204,7 +204,7 @@ SEED_PRODUCTS = [
         "description": "Brightening serum for a radiant complexion.",
         "price": "24.99",
         "stock_quantity": 29,
-        "image_url": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "beauty-personal-care",
@@ -213,7 +213,7 @@ SEED_PRODUCTS = [
         "description": "Quick-dry hair dryer with ergonomic design.",
         "price": "34.90",
         "stock_quantity": 21,
-        "image_url": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "books",
@@ -222,7 +222,7 @@ SEED_PRODUCTS = [
         "description": "An engaging mystery novel for evening reading.",
         "price": "15.99",
         "stock_quantity": 45,
-        "image_url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "books",
@@ -231,7 +231,7 @@ SEED_PRODUCTS = [
         "description": "A practical guide for modern software development.",
         "price": "29.99",
         "stock_quantity": 33,
-        "image_url": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "books",
@@ -240,7 +240,7 @@ SEED_PRODUCTS = [
         "description": "Inspiring book for motivation and personal growth.",
         "price": "18.50",
         "stock_quantity": 27,
-        "image_url": "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "books",
@@ -249,7 +249,7 @@ SEED_PRODUCTS = [
         "description": "Simple recipes for everyday healthy meals.",
         "price": "22.00",
         "stock_quantity": 24,
-        "image_url": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "books",
@@ -258,7 +258,7 @@ SEED_PRODUCTS = [
         "description": "A collection of fun stories for young readers.",
         "price": "16.75",
         "stock_quantity": 30,
-        "image_url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "sports-fitness",
@@ -267,7 +267,7 @@ SEED_PRODUCTS = [
         "description": "Compact dumbbells for home workouts and strength training.",
         "price": "79.99",
         "stock_quantity": 20,
-        "image_url": "https://images.unsplash.com/photo-1558611012-696072aa579a?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "sports-fitness",
@@ -276,7 +276,7 @@ SEED_PRODUCTS = [
         "description": "Non-slip yoga mat for fitness and meditation.",
         "price": "29.00",
         "stock_quantity": 26,
-        "image_url": "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "sports-fitness",
@@ -285,7 +285,7 @@ SEED_PRODUCTS = [
         "description": "High-grade cricket bat for practice and matches.",
         "price": "54.50",
         "stock_quantity": 14,
-        "image_url": "https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "sports-fitness",
@@ -294,7 +294,7 @@ SEED_PRODUCTS = [
         "description": "Durable football designed for outdoor play.",
         "price": "34.99",
         "stock_quantity": 18,
-        "image_url": "https://images.unsplash.com/photo-1505842465776-3d4c8f0d0f12?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "sports-fitness",
@@ -303,7 +303,7 @@ SEED_PRODUCTS = [
         "description": "Portable bands for stretching and strength workouts.",
         "price": "19.95",
         "stock_quantity": 22,
-        "image_url": "https://images.unsplash.com/photo-1594737625785-6d7d49f9a1c7?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1598289431512-b97b0917affc?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "toys-games",
@@ -312,7 +312,7 @@ SEED_PRODUCTS = [
         "description": "Creative building blocks for endless imagination.",
         "price": "29.99",
         "stock_quantity": 28,
-        "image_url": "https://images.unsplash.com/photo-1580712632715-9f1c9f2b1f2a?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "toys-games",
@@ -321,7 +321,7 @@ SEED_PRODUCTS = [
         "description": "Fun strategy game for family game nights.",
         "price": "24.50",
         "stock_quantity": 32,
-        "image_url": "https://images.unsplash.com/photo-1526318472351-c75fcf070b6a?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "toys-games",
@@ -330,7 +330,7 @@ SEED_PRODUCTS = [
         "description": "Speedy RC car with rechargeable battery.",
         "price": "39.90",
         "stock_quantity": 17,
-        "image_url": "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "toys-games",
@@ -339,7 +339,7 @@ SEED_PRODUCTS = [
         "description": "Challenging puzzle set for kids and adults.",
         "price": "17.99",
         "stock_quantity": 21,
-        "image_url": "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "toys-games",
@@ -348,7 +348,7 @@ SEED_PRODUCTS = [
         "description": "Soft plush toy for comfort and playtime.",
         "price": "14.00",
         "stock_quantity": 26,
-        "image_url": "https://images.unsplash.com/photo-1516822003754-cca485356ecb?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "grocery",
@@ -357,7 +357,7 @@ SEED_PRODUCTS = [
         "description": "Long grain rice for everyday meals.",
         "price": "11.99",
         "stock_quantity": 50,
-        "image_url": "https://images.unsplash.com/photo-1496412705862-e0088f16f791?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "grocery",
@@ -366,7 +366,7 @@ SEED_PRODUCTS = [
         "description": "Rich roasted coffee beans for fresh brews.",
         "price": "13.50",
         "stock_quantity": 40,
-        "image_url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "grocery",
@@ -375,7 +375,7 @@ SEED_PRODUCTS = [
         "description": "Premium green tea leaves for daily refreshment.",
         "price": "8.99",
         "stock_quantity": 38,
-        "image_url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "grocery",
@@ -384,7 +384,7 @@ SEED_PRODUCTS = [
         "description": "Assorted snacks for quick bites and gatherings.",
         "price": "9.50",
         "stock_quantity": 35,
-        "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "grocery",
@@ -393,7 +393,7 @@ SEED_PRODUCTS = [
         "description": "Versatile cooking oil for everyday meal prep.",
         "price": "7.25",
         "stock_quantity": 42,
-        "image_url": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "furniture",
@@ -402,7 +402,7 @@ SEED_PRODUCTS = [
         "description": "Comfortable chair designed for long work sessions.",
         "price": "129.99",
         "stock_quantity": 12,
-        "image_url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1505797149-43b0069ec26b?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "furniture",
@@ -411,7 +411,7 @@ SEED_PRODUCTS = [
         "description": "Compact study table with practical storage.",
         "price": "99.50",
         "stock_quantity": 10,
-        "image_url": "https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "furniture",
@@ -420,7 +420,7 @@ SEED_PRODUCTS = [
         "description": "Stylish sofa for living room comfort.",
         "price": "449.00",
         "stock_quantity": 8,
-        "image_url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "furniture",
@@ -429,7 +429,7 @@ SEED_PRODUCTS = [
         "description": "Spacious wardrobe for clothes and accessories.",
         "price": "259.99",
         "stock_quantity": 9,
-        "image_url": "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "furniture",
@@ -438,7 +438,7 @@ SEED_PRODUCTS = [
         "description": "Elegant bedside table for bedrooms and reading nooks.",
         "price": "69.95",
         "stock_quantity": 15,
-        "image_url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "office-supplies",
@@ -447,7 +447,7 @@ SEED_PRODUCTS = [
         "description": "Smooth paper notebook for notes and planning.",
         "price": "4.99",
         "stock_quantity": 60,
-        "image_url": "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "office-supplies",
@@ -456,7 +456,7 @@ SEED_PRODUCTS = [
         "description": "Set of smooth-writing pens for work and study.",
         "price": "8.50",
         "stock_quantity": 48,
-        "image_url": "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "office-supplies",
@@ -465,7 +465,7 @@ SEED_PRODUCTS = [
         "description": "Compact printer for home and office printing.",
         "price": "159.00",
         "stock_quantity": 11,
-        "image_url": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "office-supplies",
@@ -474,7 +474,7 @@ SEED_PRODUCTS = [
         "description": "Adjustable desk lamp for focused work sessions.",
         "price": "29.99",
         "stock_quantity": 24,
-        "image_url": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
     },
     {
         "category_slug": "office-supplies",
@@ -483,7 +483,7 @@ SEED_PRODUCTS = [
         "description": "Neat storage solution for office essentials.",
         "price": "19.95",
         "stock_quantity": 22,
-        "image_url": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80",
+        "image_url": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80",
     },
 ]
 
@@ -526,4 +526,3 @@ def seed_products() -> None:
 
 if __name__ == "__main__":
     seed_products()
-

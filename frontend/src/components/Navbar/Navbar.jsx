@@ -4,8 +4,8 @@ import { useCart } from "../../context/CartContext.jsx";
 
 function Navbar() {
   const { user, logout } = useAuth();
-  const { items } = useCart();
-  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const { totalItems } = useCart();
+  const itemCount = totalItems || 0;
 
   return (
     <nav className="navbar navbar-expand-lg bg-white border-bottom">
