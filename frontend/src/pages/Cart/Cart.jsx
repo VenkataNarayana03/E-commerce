@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
 import { useAuth } from "../../context/AuthContext.jsx";
-import BackButton from "../../components/BackButton/BackButton.jsx";
 import { formatDualPrice } from "../../utils/price.js";
 
 function Cart() {
@@ -22,7 +21,6 @@ function Cart() {
 
   return (
     <div className="container py-4">
-      <BackButton />
       
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>

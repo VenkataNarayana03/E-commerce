@@ -27,6 +27,24 @@ export function CartProvider({ children }) {
 
     setLoading(true);
     try {
+      // Sync guest cart to user cart on backend if any guest items exist
+      const localCartStr = localStorage.getItem("guest_cart");
+      if (localCartStr) {
+        try {
+          const guestItems = JSON.parse(localCartStr);
+          for (const gItem of guestItems) {
+            const prodId = gItem.product_id || gItem.product?.id || gItem.id;
+            if (prodId && typeof prodId === "number") {
+              await cartService.addToCart(prodId, gItem.quantity);
+            }
+          }
+        } catch (err) {
+          console.error("Failed to migrate guest cart items:", err);
+        } finally {
+          localStorage.removeItem("guest_cart");
+        }
+      }
+
       const data = await cartService.getCart();
       setCartState({
         items: data.items,

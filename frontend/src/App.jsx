@@ -10,6 +10,7 @@ import Register from "./pages/Register/Register.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Orders from "./pages/Orders/Orders.jsx";
+import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import Users from "./pages/Users/Users.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
@@ -48,6 +49,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Orders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <ProtectedRoute>
+                <Wishlist />
               </ProtectedRoute>
             }
           />

@@ -4,9 +4,14 @@
 erDiagram
     USERS ||--o{ CART_ITEMS : owns
     USERS ||--o{ ORDERS : places
+    USERS ||--o{ ADDRESSES : saves
+    USERS ||--o{ WISHLIST_ITEMS : saves
+    USERS ||--o{ REVIEWS : writes
     CATEGORIES ||--o{ PRODUCTS : contains
     PRODUCTS ||--o{ CART_ITEMS : added_to
     PRODUCTS ||--o{ ORDER_ITEMS : purchased_as
+    PRODUCTS ||--o{ WISHLIST_ITEMS : saved_in
+    PRODUCTS ||--o{ REVIEWS : receives
     ORDERS ||--|{ ORDER_ITEMS : includes
     ORDERS ||--o| PAYMENTS : has
 
@@ -19,6 +24,22 @@ erDiagram
         boolean is_active
         boolean is_blocked
         string profile_image_url
+        datetime created_at
+        datetime updated_at
+    }
+
+    ADDRESSES {
+        int id PK
+        int user_id FK
+        string shipping_name
+        string shipping_phone
+        string shipping_address_line1
+        string shipping_address_line2
+        string shipping_city
+        string shipping_state
+        string shipping_postal_code
+        string shipping_country
+        boolean is_default
         datetime created_at
         datetime updated_at
     }
@@ -52,6 +73,23 @@ erDiagram
         int user_id FK
         int product_id FK
         int quantity
+        datetime created_at
+        datetime updated_at
+    }
+
+    WISHLIST_ITEMS {
+        int id PK
+        int user_id FK
+        int product_id FK
+        datetime created_at
+    }
+
+    REVIEWS {
+        int id PK
+        int user_id FK
+        int product_id FK
+        int rating
+        text comment
         datetime created_at
         datetime updated_at
     }
@@ -103,9 +141,8 @@ erDiagram
 
 ## Relationships
 
-- One user can have many cart items and many orders.
+- One user can have many saved addresses, cart items, wishlist items, reviews, and orders.
 - One category can contain many products.
-- One product can appear in many carts and order items.
+- One product can appear in many carts, wishlist items, reviews, and order items.
 - One order has many order items.
 - One order has zero or one payment record.
-

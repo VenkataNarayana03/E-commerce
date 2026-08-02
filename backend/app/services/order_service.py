@@ -8,7 +8,6 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.models.cart_item import CartItem
 from app.models.order import Order, OrderItem
-from app.models.product import Product
 from app.schemas.order import OrderCreate
 
 VALID_ORDER_STATUSES = {
@@ -82,7 +81,7 @@ def create_order(db: Session, user_id: int, payload: OrderCreate) -> Order:
     new_order = Order(
         user_id=user_id,
         order_number=order_number,
-        status="pending" if payload.payment_method != "cod" else "confirmed",
+        status="confirmed",
         payment_method=payload.payment_method,
         shipping_name=payload.shipping_name,
         shipping_phone=payload.shipping_phone,

@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import api from "../../services/api.js";
 import { orderService } from "../../services/orderService.js";
 import { useAuth } from "../../context/AuthContext.jsx";
-import BackButton from "../../components/BackButton/BackButton.jsx";
 import { formatDualPrice } from "../../utils/price.js";
 
 const emptyForm = {
@@ -37,7 +36,6 @@ const ORDER_STATUS_OPTIONS = [
 function Admin() {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("orders");
-  const [message, setMessage] = useState("");
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -62,10 +60,6 @@ function Admin() {
   const [isSavingCategory, setIsSavingCategory] = useState(false);
 
   useEffect(() => {
-    api
-      .get("/admin/dashboard")
-      .then((response) => setMessage(response.data.message))
-      .catch(() => setMessage("Unable to load admin dashboard details."));
     loadCategories();
     loadProducts();
     loadSummary();
@@ -267,8 +261,6 @@ function Admin() {
 
   return (
     <div className="container py-4">
-      <BackButton />
-      
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h1 className="h3 fw-bold text-dark mb-1">Admin Dashboard</h1>

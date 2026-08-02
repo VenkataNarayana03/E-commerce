@@ -4,7 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import OperationalError
 
 from app.config import get_settings
-from app.routes import admin, auth, cart, categories, orders, products, users
+from app.database import Base, engine
+import app.models  # Ensure all models are loaded for table creation
+from app.routes import addresses, admin, auth, cart, categories, orders, products, reviews, users, wishlist
+
+# Ensure all database tables exist
+Base.metadata.create_all(bind=engine)
 
 settings = get_settings()
 
@@ -45,3 +50,6 @@ app.include_router(categories.router)
 app.include_router(products.router)
 app.include_router(cart.router)
 app.include_router(orders.router)
+app.include_router(addresses.router)
+app.include_router(wishlist.router)
+app.include_router(reviews.router)

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../services/api.js";
-import BackButton from "../../components/BackButton/BackButton.jsx";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -45,7 +44,6 @@ function Users() {
 
   return (
     <>
-      <BackButton />
       <div className="bg-white border rounded p-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h1 className="h3 mb-0">Users</h1>

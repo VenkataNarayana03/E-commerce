@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
-import BackButton from "../../components/BackButton/BackButton.jsx";
 import api from "../../services/api.js";
 
 function Products() {
@@ -43,7 +42,6 @@ function Products() {
 
   return (
     <>
-      <BackButton />
       <div className="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-4">
         <h1 className="h3 mb-0">Products</h1>
         <div className="d-flex flex-column flex-sm-row gap-2">

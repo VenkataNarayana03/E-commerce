@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext.jsx";
 
@@ -8,6 +8,7 @@ function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ full_name: "", email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,53 +21,142 @@ function Register() {
 
     try {
       await register(formData);
-      toast.success("Account created");
+      toast.success("Account created successfully! Welcome aboard.");
       navigate("/dashboard");
     } catch (error) {
-      toast.error(error.response?.data?.detail || "Registration failed");
+      toast.error(error.response?.data?.detail || "Registration failed. Please check your details.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <form className="mx-auto bg-white border rounded p-4" style={{ maxWidth: 460 }} onSubmit={handleSubmit}>
-      <h1 className="h4 mb-3">Register</h1>
-      <label className="form-label" htmlFor="name">Name</label>
-      <input
-        className="form-control mb-3"
-        id="name"
-        name="full_name"
-        value={formData.full_name}
-        onChange={handleChange}
-        required
-      />
-      <label className="form-label" htmlFor="email">Email</label>
-      <input
-        className="form-control mb-3"
-        id="email"
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <label className="form-label" htmlFor="password">Password</label>
-      <input
-        className="form-control mb-3"
-        id="password"
-        name="password"
-        type="password"
-        minLength="8"
-        maxLength="72"
-        value={formData.password}
-        onChange={handleChange}
-        required
-      />
-      <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Creating..." : "Create Account"}
-      </button>
-    </form>
+    <div className="container py-5">
+      <div className="row justify-content-center mt-2">
+        <div className="col-12 col-md-8 col-lg-5">
+          <div className="bg-white border-0 rounded-4 shadow-lg p-4 p-sm-5 position-relative overflow-hidden">
+            {/* Top Accent Gradient Bar */}
+            <div className="position-absolute top-0 start-0 w-100 bg-primary" style={{ height: "6px" }}></div>
+
+            {/* Header Badge */}
+            <div className="text-center mb-4">
+              <div
+                className="bg-primary-subtle text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm"
+                style={{ width: "64px", height: "64px" }}
+              >
+                <i className="bi bi-person-plus-fill fs-2"></i>
+              </div>
+              <h1 className="h3 fw-bold text-dark mb-1">Create an Account</h1>
+              <p className="text-muted small mb-0">Join us to enjoy 1-click checkouts, order tracking, and saved wishlists.</p>
+            </div>
+
+            {/* Registration Form */}
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label className="form-label small fw-semibold text-dark" htmlFor="name">
+                  Full Name
+                </label>
+                <div className="input-group">
+                  <span className="input-group-text bg-light text-muted border-end-0">
+                    <i className="bi bi-person"></i>
+                  </span>
+                  <input
+                    className="form-control bg-light border-start-0 ps-0"
+                    id="name"
+                    name="full_name"
+                    type="text"
+                    placeholder="John Doe"
+                    value={formData.full_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label small fw-semibold text-dark" htmlFor="email">
+                  Email Address
+                </label>
+                <div className="input-group">
+                  <span className="input-group-text bg-light text-muted border-end-0">
+                    <i className="bi bi-envelope"></i>
+                  </span>
+                  <input
+                    className="form-control bg-light border-start-0 ps-0"
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label className="form-label small fw-semibold text-dark" htmlFor="password">
+                  Password (8+ characters)
+                </label>
+                <div className="input-group">
+                  <span className="input-group-text bg-light text-muted border-end-0">
+                    <i className="bi bi-lock"></i>
+                  </span>
+                  <input
+                    className="form-control bg-light border-start-0 border-end-0 ps-0"
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    minLength="8"
+                    maxLength="72"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    className="btn btn-light text-muted border border-start-0"
+                    type="button"
+                    onClick={() => setShowPassword((current) => !current)}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}></i>
+                  </button>
+                </div>
+              </div>
+
+              <button
+                className="btn btn-primary w-100 rounded-pill py-2.5 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span>Creating Account...</span>
+                  </>
+                ) : (
+                  <>
+                    <i className="bi bi-person-check fs-5"></i>
+                    <span>Create Account</span>
+                  </>
+                )}
+              </button>
+            </form>
+
+            {/* Bottom Footer Link */}
+            <div className="text-center mt-4 border-top pt-3">
+              <p className="text-muted small mb-0">
+                Already have an account?{" "}
+                <Link to="/login" className="text-primary fw-bold text-decoration-none ms-1">
+                  Sign in here
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

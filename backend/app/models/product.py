@@ -11,6 +11,8 @@ if TYPE_CHECKING:
     from app.models.cart_item import CartItem
     from app.models.category import Category
     from app.models.order import OrderItem
+    from app.models.review import Review
+    from app.models.wishlist_item import WishlistItem
 
 
 class Product(Base):
@@ -36,4 +38,5 @@ class Product(Base):
     category: Mapped["Category"] = relationship(back_populates="products")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="product")
-
+    wishlist_items: Mapped[list["WishlistItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
+    reviews: Mapped[list["Review"]] = relationship(back_populates="product", cascade="all, delete-orphan")
